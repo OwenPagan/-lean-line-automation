@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lean Line Legacy Automation — Grupo 4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#182126;
+    --steel:#1B3A4B;
+    --bg:#EDF1F3;
+    --card:#FFFFFF;
+    --line:#D3DBDE;
+    --amber:#E8622C;
+    --done:#2E7D5B;
+    --muted:#5B6B72;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.5;
+  }
+  header{
+    background:var(--steel);
+    color:#fff;
+    padding:48px 24px 40px;
+  }
+  .wrap{max-width:900px; margin:0 auto;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:#9FC2CF;
+    margin-bottom:10px;
+  }
+  h1{
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    font-size:clamp(28px, 5vw, 42px);
+    letter-spacing:.01em;
+    text-transform:uppercase;
+    line-height:1.1;
+  }
+  header p{
+    margin-top:14px;
+    max-width:60ch;
+    color:#CBD9DE;
+    font-size:15px;
+  }
+  .meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:24px;
+    margin-top:24px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:#9FC2CF;
+  }
+  main{max-width:900px; margin:0 auto; padding:44px 24px 60px;}
+  section{margin-bottom:48px;}
+  .section-title{
+    font-family:'Oswald', sans-serif;
+    font-size:13px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    border-bottom:1px solid var(--line);
+    padding-bottom:10px;
+    margin-bottom:24px;
+  }
+
+  /* Production line track */
+  .line{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+  }
+  .station{
+    display:grid;
+    grid-template-columns:56px 1fr;
+    gap:18px;
+    position:relative;
+    padding-bottom:32px;
+  }
+  .station:last-child{padding-bottom:0;}
+  .station:not(:last-child)::before{
+    content:"";
+    position:absolute;
+    left:27px;
+    top:56px;
+    bottom:-8px;
+    width:2px;
+    background:var(--line);
+  }
+  .node{
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    font-weight:500;
+    background:var(--card);
+    border:2px solid var(--line);
+    color:var(--muted);
+    z-index:1;
+  }
+  .station.done .node{ border-color:var(--done); color:var(--done); background:#EAF6EF; }
+  .station.active .node{ border-color:var(--amber); color:var(--amber); background:#FDEEE7; }
+  .station-body{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:16px 18px;
+  }
+  .station-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .station-name{
+    font-family:'Oswald', sans-serif;
+    font-size:17px;
+    text-transform:uppercase;
+    letter-spacing:.02em;
+  }
+  .status{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:3px 9px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+  .status.done{ background:#EAF6EF; color:var(--done); }
+  .status.active{ background:#FDEEE7; color:var(--amber); }
+  .status.pending{ background:var(--bg); color:var(--muted); }
+  .station-desc{
+    margin-top:8px;
+    font-size:14px;
+    color:var(--muted);
+  }
+
+  .grid2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:18px 20px;
+  }
+  .card h3{
+    font-family:'Oswald', sans-serif;
+    font-size:14px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    margin-bottom:6px;
+    color:var(--steel);
+  }
+  .card p{font-size:14px; color:var(--muted);}
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:24px;
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--muted);
+  }
+
+  @media (max-width:560px){
+    .grid2{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">EE 4002 · Capstone Design · Grupo 4</div>
+    <h1>Lean Line Legacy Automation</h1>
+    <p>Automatización semi-automatizada de la línea de ensamble de stylet, body y cap para Heraeus Medevio, Dorado, Puerto Rico.</p>
+    <div class="meta">
+      <span>Polytechnic University of Puerto Rico</span>
+      <span>Prof. Wenceslao López</span>
+      <span>CD1 · CD2 — 2026</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section>
+    <div class="section-title">Progreso del proyecto</div>
+    <div class="line">
+
+      <div class="station done">
+        <div class="node">01</div>
+        <div class="station-body">
+          <div class="station-top">
+            <div class="station-name">Investigación</div>
+            <div class="status done">Completado</div>
+          </div>
+          <p class="station-desc">Análisis del proceso actual, recolección de datos de eficiencia y calidad, y estudio del proceso de estampado existente.</p>
+        </div>
+      </div>
+
+      <div class="station done">
+        <div class="node">02</div>
+        <div class="station-body">
+          <div class="station-top">
+            <div class="station-name">Diseño</div>
+            <div class="status done">Completado</div>
+          </div>
+          <p class="station-desc">Definición del alcance del sistema, selección de componentes y diseño del layout de la máquina de doble carril.</p>
+        </div>
+      </div>
+
+      <div class="station active">
+        <div class="node">03</div>
+        <div class="station-body">
+          <div class="station-top">
+            <div class="station-name">Construcción</div>
+            <div class="status active">En progreso</div>
+          </div>
+          <p class="station-desc">Ensamblaje del sistema mecánico, eléctrico y de control: fixture hexagonal, pick &amp; place, PLC y HMI.</p>
+        </div>
+      </div>
+
+      <div class="station">
+        <div class="node">04</div>
+        <div class="station-body">
+          <div class="station-top">
+            <div class="station-name">Pruebas</div>
+            <div class="status pending">Pendiente</div>
+          </div>
+          <p class="station-desc">Factory Acceptance Testing (FAT) y Site Acceptance Testing (SAT) para validar funcionalidad.</p>
+        </div>
+      </div>
+
+      <div class="station">
+        <div class="node">05</div>
+        <div class="station-body">
+          <div class="station-top">
+            <div class="station-name">Entrega</div>
+            <div class="status pending">Pendiente</div>
+          </div>
+          <p class="station-desc">Entrenamiento de operadores y mantenimiento, documentación As-Built y presentación final.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">Objetivo</div>
+    <div class="grid2">
+      <div class="card">
+        <h3>Meta principal</h3>
+        <p>Reducir la dependencia manual e incrementar la consistencia del producto mediante automatización costo-efectiva.</p>
+      </div>
+      <div class="card">
+        <h3>Ahorro esperado</h3>
+        <p>Aproximadamente 1 FTE (empleado a tiempo completo) por línea lean.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Grupo 4 — Fernando Lastra · Miguel Arroyo · Owen Pagán
+</footer>
+
+</body>
+</html>
