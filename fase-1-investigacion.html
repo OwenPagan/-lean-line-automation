@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investigación — Lean Line Legacy Automation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#182126;
+    --steel:#1B3A4B;
+    --bg:#EDF1F3;
+    --card:#FFFFFF;
+    --line:#D3DBDE;
+    --amber:#E8622C;
+    --done:#2E7D5B;
+    --muted:#5B6B72;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+  }
+  header{
+    background:var(--steel);
+    color:#fff;
+    padding:40px 24px 34px;
+  }
+  .wrap{max-width:820px; margin:0 auto;}
+  .back{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#9FC2CF;
+    text-decoration:none;
+    margin-bottom:18px;
+  }
+  .back:hover{ color:#fff; }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:#9FC2CF;
+    margin-bottom:10px;
+  }
+  h1{
+    font-family:'Oswald', sans-serif;
+    font-weight:600;
+    font-size:clamp(26px, 5vw, 38px);
+    letter-spacing:.01em;
+    text-transform:uppercase;
+    line-height:1.1;
+  }
+  .status{
+    display:inline-block;
+    margin-top:14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    padding:4px 10px;
+    border-radius:3px;
+  }
+  .status.done{ background:#EAF6EF; color:var(--done); }
+  .status.active{ background:#FDEEE7; color:var(--amber); }
+  .status.pending{ background:rgba(255,255,255,.12); color:#CBD9DE; }
+
+  main{max-width:820px; margin:0 auto; padding:40px 24px 60px;}
+  .section-title{
+    font-family:'Oswald', sans-serif;
+    font-size:13px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    border-bottom:1px solid var(--line);
+    padding-bottom:10px;
+    margin-bottom:20px;
+    margin-top:36px;
+  }
+  .section-title:first-child{margin-top:0;}
+  p.lead{
+    font-size:16px;
+    color:var(--ink);
+    max-width:65ch;
+  }
+  ul.tasks{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  ul.tasks li{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:12px 16px;
+    font-size:14px;
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+  ul.tasks li::before{
+    content:"\2192";
+    color:var(--steel);
+    font-weight:600;
+    flex-shrink:0;
+  }
+  .nav-between{
+    display:flex;
+    justify-content:space-between;
+    margin-top:48px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+  }
+  .nav-between a{
+    color:var(--steel);
+    text-decoration:none;
+  }
+  .nav-between a:hover{ text-decoration:underline; }
+  footer{
+    border-top:1px solid var(--line);
+    padding:24px;
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="back" href="index.html">&#8592; Volver al proyecto</a>
+    <div class="eyebrow">Fase 1 de 5</div>
+    <h1>Investigación</h1>
+    <div class="status done">Completado</div>
+  </div>
+</header>
+
+<main>
+  <div class="section-title">Descripción</div>
+  <p class="lead">Levantamiento del proceso actual de la línea lean legacy: cómo se prepara el stylet, cómo se inserta en el body knob y cómo se coloca y prensa el cap, para identificar dónde automatizar.</p>
+
+  <div class="section-title">Tareas de esta fase</div>
+  <ul class="tasks">
+    <li>Análisis de los procesos actuales de la línea lean (estampado del stylet y colocación del body).</li>
+    <li>Evaluación de factibilidad para automatización.</li>
+    <li>Recolección de datos de eficiencia, rendimiento (yield) y calidad.</li>
+    <li>Aprendizaje del proceso de estampado (stamping) existente.</li>
+    <li>Recorrido por líneas de manufactura adyacentes para obtener ideas.</li>
+  </ul>
+
+  <div class="nav-between">
+    <a href="index.html">&#8592; Inicio</a>
+    <a href="fase-2-diseno.html">Diseño &#8594;</a>
+  </div>
+</main>
+
+<footer>
+  Grupo 4 — Fernando Lastra · Miguel Arroyo · Owen Pagán
+</footer>
+
+</body>
+</html>

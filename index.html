@@ -115,10 +115,23 @@
   .station.done .node{ border-color:var(--done); color:var(--done); background:#EAF6EF; }
   .station.active .node{ border-color:var(--amber); color:var(--amber); background:#FDEEE7; }
   .station-body{
+    display:block;
     background:var(--card);
     border:1px solid var(--line);
     border-radius:6px;
     padding:16px 18px;
+    text-decoration:none;
+    color:inherit;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  a.station-body:hover{
+    border-color:var(--steel);
+    transform:translateX(2px);
+  }
+  .station-top .arrow{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--muted);
+    font-size:14px;
   }
   .station-top{
     display:flex;
@@ -209,57 +222,57 @@
 
       <div class="station done">
         <div class="node">01</div>
-        <div class="station-body">
+        <a class="station-body" href="fase-1-investigacion.html">
           <div class="station-top">
             <div class="station-name">Investigación</div>
             <div class="status done">Completado</div>
           </div>
           <p class="station-desc">Análisis del proceso actual, recolección de datos de eficiencia y calidad, y estudio del proceso de estampado existente.</p>
-        </div>
+        </a>
       </div>
 
       <div class="station done">
         <div class="node">02</div>
-        <div class="station-body">
+        <a class="station-body" href="fase-2-diseno.html">
           <div class="station-top">
             <div class="station-name">Diseño</div>
             <div class="status done">Completado</div>
           </div>
           <p class="station-desc">Definición del alcance del sistema, selección de componentes y diseño del layout de la máquina de doble carril.</p>
-        </div>
+        </a>
       </div>
 
       <div class="station active">
         <div class="node">03</div>
-        <div class="station-body">
+        <a class="station-body" href="fase-3-construccion.html">
           <div class="station-top">
             <div class="station-name">Construcción</div>
             <div class="status active">En progreso</div>
           </div>
           <p class="station-desc">Ensamblaje del sistema mecánico, eléctrico y de control: fixture hexagonal, pick &amp; place, PLC y HMI.</p>
-        </div>
+        </a>
       </div>
 
       <div class="station">
         <div class="node">04</div>
-        <div class="station-body">
+        <a class="station-body" href="fase-4-pruebas.html">
           <div class="station-top">
             <div class="station-name">Pruebas</div>
             <div class="status pending">Pendiente</div>
           </div>
           <p class="station-desc">Factory Acceptance Testing (FAT) y Site Acceptance Testing (SAT) para validar funcionalidad.</p>
-        </div>
+        </a>
       </div>
 
       <div class="station">
         <div class="node">05</div>
-        <div class="station-body">
+        <a class="station-body" href="fase-5-entrega.html">
           <div class="station-top">
             <div class="station-name">Entrega</div>
             <div class="status pending">Pendiente</div>
           </div>
           <p class="station-desc">Entrenamiento de operadores y mantenimiento, documentación As-Built y presentación final.</p>
-        </div>
+        </a>
       </div>
 
     </div>
